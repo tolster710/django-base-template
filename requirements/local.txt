@@ -17,3 +17,8 @@ coverage
 pep8
 pyflakes
 pylint
+
+#tolly Added
+django-graphos
+couchbase
+numpy
