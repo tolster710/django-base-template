@@ -29,7 +29,8 @@ python-memcached
 django-debug-toolbar
 
 # Migrations
-South
+# South
+# JT Removed as not using compatable server
 
 # Feature testing
 #django-waffle

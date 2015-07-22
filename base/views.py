@@ -7,7 +7,7 @@ from django.http import HttpResponse
 import urllib2, json
 import numpy as np
 
-
+COUCHBASE_HOST = '10.0.2.2:8092/'
 def home(request):
     """ Default view for the root """
     return render(request, 'base/home.html')
@@ -15,7 +15,7 @@ def home(request):
 
 
 def latest_readings(request, n=5):
-	url_base = 'http://127.0.0.1:8092/dm-test/_design/dm/_view/latest_readings?descending=true&inclusive_end=true&stale=false&connection_timeout=60000&limit=%s&skip=0' %(n)
+	url_base = 'http://'+COUCHBASE_HOST+'dm-test/_design/dm/_view/latest_readings?descending=true&inclusive_end=true&stale=false&connection_timeout=60000&limit=%s&skip=0' %(n)
 	c_key='c:LAST_READING_CACHE'
 	msg = 'Latest Readings'
 	view_range=[5,10,15,20,50]
@@ -32,5 +32,5 @@ def latest_readings(request, n=5):
 			print e
 			pass
 	
-	return render(request, 'latest_records.html', {'view_range': view_range, 'message':msg, 'entry':new_arr})
+	return render(request, 'dm_data/latest_records.html', {'view_range': view_range, 'message':msg, 'entry':new_arr})
 
